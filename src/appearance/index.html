@@ -8,19 +8,20 @@
         <meta name="author" content="Сиразетдинов Азат Ниязович">
         <meta name="description" content="Веб-программирование: Лабораторная работа №1.">
 
-        <link href="stylesheets/styles.css" rel="stylesheet">
-        <link rel="icon" type="image/jpg" href="images/favicon.jpg">
+        <link href="style.css" rel="stylesheet">
+        <link href="https://fonts.cdnfonts.com/css/soyuz-grotesk" rel="stylesheet"> <!-- Шрифт soyuz grotesk -->
+        <link rel="icon" type="image/jpg" href="images/itmo_vt.jpg">
         <title>Лабораторная работа №1 | Веб-программирование</title>
     </head>
     <body>
         <header>
             <h1>Сиразетдинов Азат. P3216 Вариант 2623</h1>
         </header>
-        <table border="2" width="80%" align="center">
+        <table width="80%" align="center">
             <tr>
-                <td><label for="X-input">Введите X:</label></td>
+                <td><label for="X-input" class="request-label">Введите X:</label></td>
                 <td>
-                    <table border="7" id="X-input">
+                    <table id="X-input">
                     <tr>
                         <td><label><input name="X-radio-group" type="radio" value="-3">-3</label></td>
                         <td><label><input name="X-radio-group" type="radio" value="-2">-2</label></td>
@@ -71,11 +72,11 @@
                 </td>
             </tr>
             <tr>
-                <td><label for="Y-input">Введите Y:</label></td>
+                <td><label for="Y-input" class="request-label">Введите Y:</label></td>
                 <td><input type="text" id="Y-input"></td>
             </tr>
             <tr>
-                <td><label for="R-input">Выберите R:</label></td>
+                <td><label for="R-input" class="request-label">Выберите R:</label></td>
                 <td>
                     <select name="R-input" id="R-input">
                     <option value="1">1</option>
@@ -87,7 +88,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2"><button id="checkButton">Проверить</button></td>
+                <td colspan="2"><button id="checkButton"><label>Проверить</label></button></td>
             </tr>
         </table>
     </body>
