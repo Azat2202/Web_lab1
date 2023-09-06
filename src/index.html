@@ -16,57 +16,78 @@
         <header>
             <h1>Сиразетдинов Азат. P3216 Вариант 2623</h1>
         </header>
-        <table>
+        <table border="2" width="80%" align="center">
             <tr>
+                <td><label for="X-input">Введите X:</label></td>
                 <td>
-                    <label><input name="X-radio-group" type="radio" value="-3">
-                        -3
-                    </label>
+                    <table border="7" id="X-input">
+                    <tr>
+                        <td><label><input name="X-radio-group" type="radio" value="-3">-3</label></td>
+                        <td><label><input name="X-radio-group" type="radio" value="-2">-2</label></td>
+                        <td><label><input name="X-radio-group" type="radio" value="-1">-1</label></td>
+                    </tr>
+                    <tr>
+                        <td><label><input name="X-radio-group" type="radio" value="0">0</label></td>
+                        <td><label><input name="X-radio-group" type="radio" value="1">1</label></td>
+                        <td><label><input name="X-radio-group" type="radio" value="2">2</label></td>
+                    </tr>
+                    <tr>
+                        <td><label><input name="X-radio-group" type="radio" value="3">3</label></td>
+                        <td><label><input name="X-radio-group" type="radio" value="4">4</label></td>
+                        <td><label><input name="X-radio-group" type="radio" value="5">5</label></td>
+                    </tr>
+                    </table>
                 </td>
-                <td>
-                    <label><input name="X-radio-group" type="radio" value="-2">
-                        -2
-                    </label>
-                </td>
-                <td>
-                    <label><input name="X-radio-group" type="radio" value="-1">
-                        -1
-                    </label>
+                    <td rowspan="4">
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="300"
+                            height="300">
+                        <line x1="0" y1="150" x2="300" y2="150" stroke="#000720" id="line1"  />
+                        <line x1="150" y1="0" x2="150" y2="300" stroke="#000720" id="line2"  />
+                        <line x1="270" y1="148" x2="270" y2="152" stroke="#000720" id="line3"  />
+                        <text x="265" y="140" id="text3" >R</text>
+                        <line x1="210" y1="148" x2="210" y2="152" stroke="#000720" id="line4"  />
+                        <text x="200" y="140" id="text4" >R/2</text>
+                        <line x1="90" y1="148" x2="90" y2="152" stroke="#000720" id="line5"  />
+                        <text x="75" y="140" id="text5" >-R/2</text>
+                        <line x1="30" y1="148" x2="30" y2="152" stroke="#000720" id="line6"  />
+                        <text x="20" y="140" id="text6" >-R</text>
+                        <line x1="148" y1="30" x2="152" y2="30" stroke="#000720" id="line7"  />
+                        <text x="156" y="35" id="text7" >R</text>
+                        <line x1="148" y1="90" x2="152" y2="90" stroke="#000720" id="line8"  />
+                        <text x="156" y="95" id="text8" >R/2</text>
+                        <line x1="148" y1="210" x2="152" y2="210" stroke="#000720" id="line9"  />
+                        <text x="156" y="215" id="text9" >-R/2</text>
+                        <line x1="148" y1="270" x2="152" y2="270" stroke="#000720" id="line10"  />
+                        <text x="156" y="275" id="text10" >-R</text>
+                        <polygon points="300,150 295,155 295,145 " fill="#000720" stroke="#000720" id="polygon10"  />
+                        <polygon points="150,0 145,5 155,5 " fill="#000720" stroke="#000720" id="polygon11"  />
+                        <polygon points="150,150 210,150 150,30 " fill-opacity="0.4" stroke="#000080" fill="#0000ff" id="polygon12" transform="rotate(-90,149.46765,149.85016)"  />
+                        <rect x="150.26588" y="30.221565" width="60" height="120" fill-opacity="0.4" stroke="#000080" fill="#0000ff" id="rect12"  />
+                        <path d="m 150.13294,150.22157 v 120 c -70.000001,0 -120.000001,-50 -120.000001,-120 z" fill-opacity="0.4" stroke="#000080" fill="#0000ff" id="path12"  />
+                        </g>
+                    </svg>
                 </td>
             </tr>
             <tr>
+                <td><label for="Y-input">Введите Y:</label></td>
+                <td><input type="text" id="Y-input"></td>
+            </tr>
+            <tr>
+                <td><label for="R-input">Выберите R:</label></td>
                 <td>
-                    <label><input name="X-radio-group" type="radio" value="0">
-                        0
-                    </label>
-                </td>
-                <td>
-                    <label><input name="X-radio-group" type="radio" value="1">
-                        1
-                    </label>
-                </td>
-                <td>
-                    <label><input name="X-radio-group" type="radio" value="2">
-                        2
-                    </label>
+                    <select name="R-input" id="R-input">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    </select>
                 </td>
             </tr>
             <tr>
-                <td>
-                    <label><input name="X-radio-group" type="radio" value="3">
-                        3
-                    </label>
-                </td>
-                <td>
-                    <label><input name="X-radio-group" type="radio" value="4">
-                        4
-                    </label>
-                </td>
-                <td>
-                    <label><input name="X-radio-group" type="radio" value="5">
-                        5
-                    </label>
-                </td>
+                <td colspan="2"><button id="checkButton">Проверить</button></td>
             </tr>
         </table>
     </body>
