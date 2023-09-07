@@ -1,21 +1,28 @@
-function validateY() {
-    try {
-        y = document.querySelector("input[type=text]").value.replace(',', '.');
-        if (y === undefined) {
-            alert("Y не введён");
-            return false;
-        } else if (!isNumeric(y)) {
-            alert("Y не число");
-            return false;
-        } else if (!((y > -5) && (y < 5))) {
-            alert("Y не входит в область допустимых значений");
-            return false;
+function validateX(){
+    checkboxes = document.querySelectorAll('input[type=checkbox]')
+    for (let checkbox of checkboxes){
+        if(checkbox.checked){
+            return true;
         }
-        return true;
-    } catch (err) {
-        alert("Значение X не выбрано");
-        return false;
     }
+    checkboxes[4].setCustomValidity("Please choose box");
+    checkboxes[4].reportValidity();
+    return false;
+}
+
+function validateY() {
+    element = document.getElementById("Y-input");
+    y = element.value.replace(',', '.');
+    if (!isNumeric(y) || parseFloat(y) > 5 || parseFloat(y) < -5) {
+        element.setCustomValidity("Please enter an integer between -5 and 5");
+        element.reportValidity();
+        return false;
+    } else {
+        element.setCustomValidity("");
+        element.reportValidity();
+        return true;
+    }
+
 }
 
 function isNumeric(n) {

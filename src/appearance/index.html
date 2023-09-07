@@ -17,25 +17,25 @@
         <header>
             <h1>Сиразетдинов Азат. P3216 Вариант 2623</h1>
         </header>
-        <table width="80%" align="center">
+        <table border="0" width="80%" align="center">
             <tr>
                 <td><label for="X-input" class="request-label">Введите X:</label></td>
                 <td>
                     <table id="X-input">
                     <tr>
-                        <td><label><input name="X-radio-group" type="radio" value="-3">-3</label></td>
-                        <td><label><input name="X-radio-group" type="radio" value="-2">-2</label></td>
-                        <td><label><input name="X-radio-group" type="radio" value="-1">-1</label></td>
+                        <td><label><input name="X-radio-group" type="checkbox" value="-3">-3</label></td>
+                        <td><label><input name="X-radio-group" type="checkbox" value="-2">-2</label></td>
+                        <td><label><input name="X-radio-group" type="checkbox" value="-1">-1</label></td>
                     </tr>
                     <tr>
-                        <td><label><input name="X-radio-group" type="radio" value="0">0</label></td>
-                        <td><label><input name="X-radio-group" type="radio" value="1">1</label></td>
-                        <td><label><input name="X-radio-group" type="radio" value="2">2</label></td>
+                        <td><label><input name="X-radio-group" type="checkbox" value="0">0</label></td>
+                        <td><label><input name="X-radio-group" type="checkbox" value="1">1</label></td>
+                        <td><label><input name="X-radio-group" type="checkbox" value="2">2</label></td>
                     </tr>
                     <tr>
-                        <td><label><input name="X-radio-group" type="radio" value="3">3</label></td>
-                        <td><label><input name="X-radio-group" type="radio" value="4">4</label></td>
-                        <td><label><input name="X-radio-group" type="radio" value="5">5</label></td>
+                        <td><label><input name="X-radio-group" type="checkbox" value="3">3</label></td>
+                        <td><label><input name="X-radio-group" type="checkbox" value="4">4</label></td>
+                        <td><label><input name="X-radio-group" type="checkbox" value="5">5</label></td>
                     </tr>
                     </table>
                 </td>
@@ -88,9 +88,12 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2"><button id="checkButton"><label>Проверить</label></button></td>
+                <td><div id="error-message"></div></td>
+                <td><button id="checkButton"><label>Проверить</label></button></td>
             </tr>
         </table>
-        <script src="../js/validator.js"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="../js/validator.js"></script>
+            <script src="../js/onetime.js"></script>
     </body>
 </html>
