@@ -1,7 +1,7 @@
 window.onload = function () {
     $.ajax({
         type: 'GET',
-        url: '../php/main.php',
+        url: 'php/main.php',
         async: false,
         success: function (serverAnswer){
             document.getElementById("outputContainer").innerHTML = serverAnswer;
@@ -35,7 +35,7 @@ window.onload = function () {
             // console.log({ "x": x, "y": y, "r": r})
             $.ajax({
                 type: 'POST',
-                url: '../php/main.php',
+                url: 'php/main.php',
                 async: false,
                 data: { "x": x, "y": y, "r": r},
                 success: function (serverAnswer){

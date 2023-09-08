@@ -95,11 +95,11 @@ input[type="text"] {
     /*margin-right: 10%;*/
 }
 
-.fail{
+.success{
     color: #87C67A;
 }
 
-.success{
+.fail{
     color: #D18189;
 }
 

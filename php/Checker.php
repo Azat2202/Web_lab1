@@ -24,7 +24,7 @@ class Checker
                 return false;
             }
 
-            if (!($y_num > self::Y_MIN && $y_num < self::Y_MAX)) {
+            if (!($y_num >= self::Y_MIN && $y_num <= self::Y_MAX)) {
                 return false;
             }
 
