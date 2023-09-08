@@ -1,4 +1,7 @@
 <?php
+
+use php\Checker;
+
 header('Access-Control-Allow-Origin: *');
 date_default_timezone_set('Europe/Moscow');
 

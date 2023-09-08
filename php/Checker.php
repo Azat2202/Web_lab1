@@ -1,4 +1,6 @@
 <?php
+
+namespace php;
 class Checker
 {
     const X_MIN = -3;
@@ -34,9 +36,10 @@ class Checker
         }
     }
 
-    public function check($x, $y, $r){
-        if ($x >=0 && $y >= 0 && ($x > $r/2 || $y > $r)) return false;
-        elseif ($x < 0 && $y < 0 && ($y > $x/2 + $r/2)) return false;
+    public function check($x, $y, $r)
+    {
+        if ($x >= 0 && $y >= 0 && ($x > $r / 2 || $y > $r)) return false;
+        elseif ($x < 0 && $y < 0 && ($y > $x / 2 + $r / 2)) return false;
         elseif ($x < 0 && $y < 0 && ($x ^ 2 + $y ^ 2 > $r ^ 2)) return false;
         elseif ($x > 0 && $y < 0) return false;
         return true;
