@@ -1,4 +1,17 @@
 window.onload = function () {
+    $.ajax({
+        type: 'GET',
+        url: '../php/main.php',
+        async: false,
+        success: function (serverAnswer){
+            document.getElementById("outputContainer").innerHTML = serverAnswer;
+            // console.log('data saved' + msg)
+        },
+        error: function (msg) {
+            console.log('error: ' + msg)
+        }
+    });
+
     let button = document.querySelector("input[type=text]");
     button.addEventListener("input", validateY);
     button.addEventListener("focus", validateY);
@@ -19,20 +32,20 @@ window.onload = function () {
             let x = document.querySelector('input[type="checkbox"]:checked').value;
             let y = document.getElementById("Y-input").value.replace(',', '.');
             let r = document.getElementById('R-input').value
-            console.log({ "x": x, "y": y, "r": r})
+            // console.log({ "x": x, "y": y, "r": r})
             $.ajax({
                 type: 'POST',
                 url: '../php/main.php',
                 async: false,
                 data: { "x": x, "y": y, "r": r},
-                success: function (msg){
-                    console.log('data saved' + msg)
+                success: function (serverAnswer){
+                    document.getElementById("outputContainer").innerHTML = serverAnswer;
+                    // console.log('data saved' + msg)
                 },
                 error: function (msg) {
                     console.log('error: ' + msg)
                 }
             });
-            console.log("validated!")
         } else {
             console.log("not validated :(")
         }

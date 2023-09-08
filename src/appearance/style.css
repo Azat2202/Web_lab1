@@ -36,9 +36,11 @@ button {
     background-color: #81BECE;
     border: none;
     text-align: center;
-    width: 30%;
-    height: 100%;
+    width: auto;
+    padding: 0.2em;
+    height: auto;
     border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 tr button{
@@ -79,6 +81,7 @@ option:checked{
 input{
     border: none;
     border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 input[type="checkbox"] {
@@ -90,6 +93,34 @@ input[type="checkbox"] {
 input[type="text"] {
     height: 1.5em;
     /*margin-right: 10%;*/
+}
+
+.fail{
+    color: #87C67A;
+}
+
+.success{
+    color: #D18189;
+}
+
+#outputTable{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+#outputTable tr th {
+    background-color: #81BECE;
+    color: #E8EDE7;
+    text-align: left;
+}
+
+#outputTable th,
+#outputTable td {
+    padding: 12px 15px;
 }
 
 td{
