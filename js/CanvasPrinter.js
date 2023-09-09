@@ -109,5 +109,16 @@ class CanvasPrinter{
             Math.PI * 2,
         );
         this.ctx.fill();
+        this.ctx.beginPath();
+        this.ctx.fillStyle = "black"
+        this.ctx.lineWidth = 1.5
+        this.ctx.arc(
+            this.SIZE / 2 + pointInPixels * x,
+            this.SIZE / 2 - y * pointInPixels,
+            5,
+            0,
+            Math.PI * 2
+        )
+        this.ctx.stroke();
     }
 }
