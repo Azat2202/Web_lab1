@@ -28,19 +28,11 @@ $current_time = date("H:i:s");
 $start_time = microtime(true);
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-//    $_SESSION["results"] = array();
-    echo table_head;
-    foreach (array_reverse($_SESSION["results"]) as $table_row) {
-        echo "<tr>";
-        echo "<td>" . $table_row["x"] . "</td>";
-        echo "<td>" . $table_row["y"] . "</td>";
-        echo "<td>" . $table_row["r"] . "</td>";
-        echo "<td>" . $table_row["coordsStatus"] . "</td>";
-        echo "<td>" . $table_row["currentTime"] . "</td>";
-        echo "<td>" . $table_row["benchmarkTime"] . "</td>";
-        echo "</tr>";
-    }
-    echo table_tail;
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode(array(
+        "html" => createTable(),
+        'dots' => $_SESSION["results"]
+    ));
     exit();
 }
 
@@ -50,33 +42,53 @@ if (isset($_POST["x"]) && isset($_POST["y"]) && isset($_POST["r"])) {
     $r = intval($_POST["r"]);
     $checker = new Checker();
     if ($checker -> validate($x, $y, $r)){
-        $cord_status = $checker -> check($x, $y, $r)
-            ? "<span class='success'>попадание</span>"
-            : "<span class='fail'>промах</span>";
+        $cord_status = $checker -> check($x, $y, $r);
         $elapsed_time = round((microtime(true) - $start_time) * 1000000, 2);
         $new_result = array(
             "x" => $x,
             "y" => $y,
             "r" => $r,
-            "coordsStatus" => $cord_status,
+            "success" => $cord_status,
             "currentTime" => $current_time,
             "benchmarkTime" => $elapsed_time
         );
-        array_push($_SESSION["results"], $new_result);
-        echo table_head;
-        foreach (array_reverse($_SESSION["results"]) as $table_row) {
-            echo "<tr>";
-            echo "<td>" . $table_row["x"] . "</td>";
-            echo "<td>" . $table_row["y"] . "</td>";
-            echo "<td>" . $table_row["r"] . "</td>";
-            echo "<td>" . $table_row["coordsStatus"] . "</td>";
-            echo "<td>" . $table_row["currentTime"] . "</td>";
-            echo "<td>" . $table_row["benchmarkTime"] . "</td>";
-            echo "</tr>";
-        }
-        echo table_tail;
+        $_SESSION["results"][] = $new_result;
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode(array(
+            "html" => createTable(),
+            "x" => $x,
+            "y" => $y,
+            "success" => $checker -> check($x, $y, $r)
+        ));
         exit();
     } else{
-        exit("<tr><td colspan=6 id='error'>Серверу переданы неверные данные! Проверьте, что все данные введены!</td></tr>");
+        header('Content-Type: application/json; charset=utf-8');
+        http_response_code(400);
+        echo json_encode(array(
+            "html" => createTable()
+        ));
+        exit();
     }
+}
+
+function createTable(){
+    $out = "";
+    $out = $out . table_head;
+    if(sizeof($_SESSION["results"]) > 0) {
+        foreach (array_reverse($_SESSION["results"]) as $table_row) {
+            $out = $out . "<tr>";
+            $out = $out . "<td>" . $table_row["x"] . "</td>";
+            $out = $out . "<td>" . $table_row["y"] . "</td>";
+            $out = $out . "<td>" . $table_row["r"] . "</td>";
+            $out = $out . "<td>" .
+                ($table_row["success"]
+                    ? "<span class='success'>попадание</span>"
+                    : "<span class='fail'>промах</span>")
+                . "</td>";
+            $out = $out . "<td>" . $table_row["currentTime"] . "</td>";
+            $out = $out . "<td>" . $table_row["benchmarkTime"] . "</td>";
+            $out = $out . "</tr>\r\n";
+        }
+    }
+    return $out . table_tail;
 }

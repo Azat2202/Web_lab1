@@ -1,22 +1,34 @@
 window.onload = function () {
+    let canvasPrinter = new CanvasPrinter();
+    canvasPrinter.redrawAll(document.querySelector("#R-input").value);
     $.ajax({
         type: 'GET',
         url: 'php/main.php',
         async: false,
         success: function (serverAnswer){
-            document.getElementById("outputContainer").innerHTML = serverAnswer;
-            // console.log('data saved' + msg)
-        },
-        error: function (msg) {
-            console.log('error: ' + msg)
+            const jsonObject = JSON.parse(JSON.stringify(serverAnswer));
+            document.getElementById("outputContainer").innerHTML = jsonObject.html;
+            dots = jsonObject.dots;
+            jsonObject.dots.forEach((dot) => {
+                canvasPrinter.drawPoint(
+                    dot.x,
+                    dot.y,
+                    dot.success
+                )
+            })
         }
     });
 
-    let canvasPrinter = new CanvasPrinter();
-    canvasPrinter.redrawAll(1);
     document.getElementById("R-input")
         .onchange = function () {
             canvasPrinter.redrawAll(document.querySelector("#R-input").value);
+            dots.forEach((dot) => {
+                canvasPrinter.drawPoint(
+                    dot.x,
+                    dot.y,
+                    dot.success
+                )
+            })
         };
 
     // Ограничить количество знаков после запятой
@@ -41,22 +53,26 @@ window.onload = function () {
             let x = document.querySelector('input[type="checkbox"]:checked').value;
             let y = document.getElementById("Y-input").value.replace(',', '.');
             let r = document.getElementById('R-input').value
-            // console.log({ "x": x, "y": y, "r": r})
             $.ajax({
                 type: 'POST',
                 url: 'php/main.php',
                 async: false,
                 data: { "x": x, "y": y, "r": r},
                 success: function (serverAnswer){
-                    document.getElementById("outputContainer").innerHTML = serverAnswer;
-                    canvasPrinter.drawPoint(x, y, true);
-                },
-                error: function (msg) {
-                    console.log('error: ' + msg)
+                    const jsonObject = JSON.parse(JSON.stringify(serverAnswer));
+                    document.getElementById("outputContainer").innerHTML = jsonObject.html;
+                    dots.push({
+                        'x': jsonObject.x,
+                        'y': jsonObject.y,
+                        'success': jsonObject.success
+                    });
+                    canvasPrinter.drawPoint(
+                        jsonObject.x,
+                        jsonObject.y,
+                        jsonObject.success
+                    );
                 }
             });
-        } else {
-            canvasPrinter.drawPoint(x, y, false);
         }
     }
 };
