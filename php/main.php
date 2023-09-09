@@ -20,8 +20,8 @@ const table_head = "<table border='0' id='outputTable'>
         </tr>";
 const table_tail = '</table>';
 
-if (!isset($_SESSION["results"])) {
-    $_SESSION["results"] = array();
+if (!isset($_SESSION["shots"])) {
+    $_SESSION["shots"] = array();
 }
 
 $current_time = date("H:i:s");
@@ -31,18 +31,18 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode(array(
         "html" => createTable(),
-        'dots' => $_SESSION["results"]
+        'dots' => $_SESSION["shots"]
     ));
     exit();
 }
 
 if (isset($_POST["delete"])) {
     if ($_POST["delete"] == 'all') {
-        $_SESSION["results"] = array();
+        $_SESSION["shots"] = array();
         header('Content-Type: application/json; charset=utf-8');
         echo json_encode(array(
             "html" => createTable(),
-            'dots' => $_SESSION["results"]
+            'dots' => $_SESSION["shots"]
         ));
         exit();
     }
@@ -64,7 +64,7 @@ if (isset($_POST["x"]) && isset($_POST["y"]) && isset($_POST["r"])) {
             "currentTime" => $current_time,
             "benchmarkTime" => $elapsed_time
         );
-        $_SESSION["results"][] = $new_result;
+        $_SESSION["shots"][] = $new_result;
         header('Content-Type: application/json; charset=utf-8');
         echo json_encode(array(
             "html" => createTable(),
@@ -86,8 +86,8 @@ if (isset($_POST["x"]) && isset($_POST["y"]) && isset($_POST["r"])) {
 function createTable(){
     $out = "";
     $out = $out . table_head;
-    if(sizeof($_SESSION["results"]) > 0) {
-        foreach (array_reverse($_SESSION["results"]) as $table_row) {
+    if(sizeof($_SESSION["shots"]) > 0) {
+        foreach (array_reverse($_SESSION["shots"]) as $table_row) {
             $out = $out . "<tr>";
             $out = $out . "<td>" . $table_row["x"] . "</td>";
             $out = $out . "<td>" . $table_row["y"] . "</td>";
