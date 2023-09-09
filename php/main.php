@@ -28,9 +28,20 @@ $current_time = date("H:i:s");
 $start_time = microtime(true);
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    $_SESSION["results"] = array();
+//    $_SESSION["results"] = array();
     echo table_head;
+    foreach (array_reverse($_SESSION["results"]) as $table_row) {
+        echo "<tr>";
+        echo "<td>" . $table_row["x"] . "</td>";
+        echo "<td>" . $table_row["y"] . "</td>";
+        echo "<td>" . $table_row["r"] . "</td>";
+        echo "<td>" . $table_row["coordsStatus"] . "</td>";
+        echo "<td>" . $table_row["currentTime"] . "</td>";
+        echo "<td>" . $table_row["benchmarkTime"] . "</td>";
+        echo "</tr>";
+    }
     echo table_tail;
+    exit();
 }
 
 if (isset($_POST["x"]) && isset($_POST["y"]) && isset($_POST["r"])) {
