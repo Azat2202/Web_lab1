@@ -75,4 +75,18 @@ window.onload = function () {
             });
         }
     }
+
+    document.getElementById('clearButton').onclick = function (){
+        $.ajax({
+            type: 'POST',
+            url: 'php/main.php',
+            data: {'delete': 'all'},
+            success: function (serverAnswer){
+                const jsonObject = JSON.parse(JSON.stringify(serverAnswer));
+                document.getElementById("outputContainer").innerHTML = jsonObject.html;
+                dots = jsonObject.dots;
+                canvasPrinter.redrawAll(document.querySelector("#R-input").value);
+            }
+        });
+    }
 };
