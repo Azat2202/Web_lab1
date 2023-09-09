@@ -36,6 +36,18 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     exit();
 }
 
+if (isset($_POST["delete"])) {
+    if ($_POST["delete"] == 'all') {
+        $_SESSION["results"] = array();
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode(array(
+            "html" => createTable(),
+            'dots' => $_SESSION["results"]
+        ));
+        exit();
+    }
+}
+
 if (isset($_POST["x"]) && isset($_POST["y"]) && isset($_POST["r"])) {
     $x = intval($_POST["x"]);
     $y = floatval($_POST["y"]);
