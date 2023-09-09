@@ -12,6 +12,15 @@ window.onload = function () {
         }
     });
 
+    let canvasPrinter = new CanvasPrinter();
+    canvasPrinter.redrawAll(1);
+    document.getElementById("R-input")
+        .onchange = function () {
+            canvasPrinter.redrawAll(document.querySelector("#R-input").value);
+        };
+
+    // Ограничить количество знаков после запятой
+
     let button = document.querySelector("input[type=text]");
     button.addEventListener("input", validateY);
     button.addEventListener("focus", validateY);
@@ -40,14 +49,14 @@ window.onload = function () {
                 data: { "x": x, "y": y, "r": r},
                 success: function (serverAnswer){
                     document.getElementById("outputContainer").innerHTML = serverAnswer;
-                    // console.log('data saved' + msg)
+                    canvasPrinter.drawPoint(x, y, true);
                 },
                 error: function (msg) {
                     console.log('error: ' + msg)
                 }
             });
         } else {
-            console.log("not validated :(")
+            canvasPrinter.drawPoint(x, y, false);
         }
     }
 };
